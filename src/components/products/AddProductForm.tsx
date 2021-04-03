@@ -9,8 +9,8 @@ import {
     NumberInput,
     NumberInputField
 } from '@chakra-ui/react'
-
 import { useForm } from 'react-hook-form';
+import { useProduct } from '../../context/product'
 
 interface ProductForm {
     name: string,
@@ -20,7 +20,20 @@ interface ProductForm {
 
 export const AddProductForm: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<ProductForm>();
-    const onSubmit = handleSubmit(data => console.log(data));
+    const { dispatch } = useProduct()
+
+
+    const onSubmit = handleSubmit(data => {
+        const { name, price, quantity } = data
+        dispatch({
+            type: 'ADD_PRODUCT', payload: {
+                name,
+                price,
+                quantity,
+                uid: Math.random()
+            }
+        })
+    });
 
     return (
         <Box pt="2">

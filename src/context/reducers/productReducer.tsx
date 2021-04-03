@@ -1,7 +1,8 @@
 interface Product {
     name: string,
     price: number,
-    quantity: number
+    quantity: number,
+    uid: number
 }
 
 export interface IState {

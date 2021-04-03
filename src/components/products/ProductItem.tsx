@@ -9,13 +9,14 @@ import {
 interface Props {
     name: string,
     price: number,
-    quantity: number
+    quantity: number,
+    uid: number
 }
 
 export const ProductItem: React.FC<Props> = ({ name, price }) => {
-    
+
     return (
-        <div>
+        <div >
             <Flex
                 as="button"
                 p="3"
@@ -30,12 +31,12 @@ export const ProductItem: React.FC<Props> = ({ name, price }) => {
                 _hover={{ bg: "dark.500", color: 'nTomato.500' }}
             >
                 <Box as="b" p="5">
-                    <Text fontSize="24px">
+                    <Text fontSize="24px" textTransform="capitalize">
                         {name}
                     </Text>
                 </Box>
                 <Text fontSize="20px">
-                    {price}
+                    ${price}
                 </Text>
             </Flex >
         </div>

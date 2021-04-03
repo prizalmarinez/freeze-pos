@@ -7,6 +7,7 @@ import {
   extendTheme,
   Box
 } from "@chakra-ui/react"
+import { ProductProvider } from './context/product';
 
 const theme = extendTheme({
   colors: {
@@ -27,7 +28,9 @@ ReactDOM.render(
     <ChakraProvider theme={theme}>
       <Box bg="light.100" h="100vh">
         <Container maxW="container.xl">
-          <App />
+          <ProductProvider>
+            <App />
+          </ProductProvider>
         </Container>
       </Box>
     </ChakraProvider>

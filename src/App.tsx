@@ -9,6 +9,7 @@ import {
   Box,
   Grid,
 } from "@chakra-ui/react"
+import { useProduct } from './context/product'
 // components
 import { ProductItem } from './components/products/ProductItem'
 import { AddProductBtn } from './components/products/AddProductBtn'
@@ -18,11 +19,13 @@ import { Cart } from './components/cart/Cart'
 import { AddProduct } from './pages/AddProduct'
 
 function App() {
-  const test = [3, 1, 2, 3, 2, 2, 2,]
+  const { state } = useProduct()
+  const { products } = state
 
-  const ProductList = test.map(() => {
+  const ProductList = products.map((item) => {
+    const { name, price, quantity, uid } = item
     return (
-      <ProductItem name="Hawaian Pizza" price={20} quantity={3} />
+      <ProductItem key={uid} name={name} price={price} quantity={quantity} uid={uid} />
     )
   })
 
