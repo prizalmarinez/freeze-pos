@@ -1,5 +1,10 @@
 import React from 'react';
 import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import {
   Flex,
   Box,
   Grid,
@@ -9,6 +14,8 @@ import { ProductItem } from './components/products/ProductItem'
 import { AddProductBtn } from './components/products/AddProductBtn'
 import { UserAvatar } from './components/users/UserAvatar'
 import { Cart } from './components/cart/Cart'
+// pages
+import { AddProduct } from './pages/AddProduct'
 
 function App() {
   const test = [3, 1, 2, 3, 2, 2, 2,]
@@ -19,8 +26,8 @@ function App() {
     )
   })
 
-  return (
-    <div className="App">
+  const MainWindow = () => {
+    return (
       <Flex>
         <Box flex="1" p="5">
           <Grid templateColumns="repeat(4, 1fr)" gap={3}>
@@ -37,6 +44,21 @@ function App() {
           </Box>
         </Box>
       </Flex>
+    )
+  }
+
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <MainWindow />
+          </Route>
+          <Route path="/products/add">
+            <AddProduct />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
