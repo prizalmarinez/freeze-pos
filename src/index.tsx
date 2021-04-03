@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { ChakraProvider, Container, extendTheme } from "@chakra-ui/react"
-
+import {
+  ChakraProvider,
+  Container,
+  extendTheme,
+  Box
+} from "@chakra-ui/react"
 
 const theme = extendTheme({
   colors: {
@@ -11,6 +15,9 @@ const theme = extendTheme({
     },
     nTomato: {
       500: "#ff5e37",
+    },
+    light: {
+      100: "#f7f7f7"
     }
   }
 })
@@ -18,9 +25,11 @@ const theme = extendTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <Container maxW="container.xl">
-        <App />
-      </Container>
+      <Box bg="light.100" h="100vh">
+        <Container maxW="container.xl">
+          <App />
+        </Container>
+      </Box>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
