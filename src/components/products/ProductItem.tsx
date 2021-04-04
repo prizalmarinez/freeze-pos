@@ -1,10 +1,10 @@
 import React from 'react'
-
 import {
     Flex,
     Box,
     Text
 } from '@chakra-ui/react'
+import { useCart } from '../../context/cart'
 
 interface Props {
     name: string,
@@ -13,11 +13,24 @@ interface Props {
     uid: number
 }
 
-export const ProductItem: React.FC<Props> = ({ name, price }) => {
+export const ProductItem: React.FC<Props> = ({ name, price, uid }) => {
+    const { dispatch } = useCart()
+
+    const addToCart = () => {
+        dispatch({
+            type: 'ADD_TO_CART', payload: {
+                name,
+                price,
+                quantity: 1,
+                uid
+            }
+        })
+    }
 
     return (
         <div >
             <Flex
+                onClick={() => addToCart()}
                 as="button"
                 p="3"
                 flexDirection="column"

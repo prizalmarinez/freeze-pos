@@ -7,8 +7,17 @@ import {
     Button,
 } from "@chakra-ui/react"
 import { CartItem } from './CartItem'
+import { useCart } from '../../context/cart'
 
 export const Cart: React.FC = () => {
+    const { state } = useCart()
+
+    const cartList = state.cart.map(({ name, price, quantity, uid }) => {
+        return (
+            <CartItem key={uid} name={name} quantity={quantity} price={price} />
+        )
+    })
+
     return (
         <Box boxShadow="base" rounded="md" p="3" bg="white" h="400">
             <Box mb="3">
@@ -24,7 +33,7 @@ export const Cart: React.FC = () => {
                     </Box>
                 </Flex>
             </Box>
-            <CartItem name="pizza" quantity={100} price={20} />
+            {cartList}
         </Box>
     );
 }

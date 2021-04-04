@@ -8,6 +8,7 @@ import {
   Box
 } from "@chakra-ui/react"
 import { ProductProvider } from './context/product';
+import { CartProvider } from './context/cart';
 
 const theme = extendTheme({
   colors: {
@@ -29,7 +30,9 @@ ReactDOM.render(
       <Box bg="light.100" h="100vh">
         <Container maxW="container.xl">
           <ProductProvider>
-            <App />
+            <CartProvider>
+              <App />
+            </CartProvider>
           </ProductProvider>
         </Container>
       </Box>
