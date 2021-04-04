@@ -14,7 +14,7 @@ export const initialState: IState = {
 };
 
 interface IAddProduct {
-    type: "ADD_PRODUCT";
+type: "ADD_PRODUCT";
     payload: Product
 }
 

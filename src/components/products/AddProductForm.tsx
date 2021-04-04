@@ -6,8 +6,7 @@ import {
     FormHelperText,
     Input,
     Button,
-    NumberInput,
-    NumberInputField
+    useToast
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form';
 import { useProduct } from '../../context/product'
@@ -19,9 +18,9 @@ interface ProductForm {
 }
 
 export const AddProductForm: React.FC = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<ProductForm>();
+    const toast = useToast()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<ProductForm>();
     const { dispatch } = useProduct()
-
 
     const onSubmit = handleSubmit(data => {
         const { name, price, quantity } = data
@@ -33,6 +32,14 @@ export const AddProductForm: React.FC = () => {
                 uid: Math.random()
             }
         })
+        toast({
+            title: "Product created.",
+            description: "Product Successfully Added!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+        })
+        reset({})
     });
 
     return (
@@ -47,18 +54,14 @@ export const AddProductForm: React.FC = () => {
                 </FormControl>
                 <FormControl id="price" pt="3">
                     <FormLabel>Price</FormLabel>
-                    <NumberInput max={300} min={10}>
-                        <NumberInputField {...register("price")} />
-                    </NumberInput>
+                    <Input placeholder="10 - 300" type="number" max={300} min={10} {...register("price")} />
                     <FormHelperText>
                         Price will range to 10 - 300
                     </FormHelperText>
                 </FormControl>
                 <FormControl id="quantity" pt="3">
                     <FormLabel>Quantity</FormLabel>
-                    <NumberInput max={9999} min={10}>
-                        <NumberInputField {...register("quantity")} />
-                    </NumberInput>
+                    <Input placeholder="10 - 9999" type="number" max={9999} min={10} {...register("quantity")} />
                     <FormHelperText>
                         Quantity will range to 10 - 9999
                     </FormHelperText>
