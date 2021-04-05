@@ -22,7 +22,8 @@ export const ProductItem: React.FC<Props> = ({ name, price, uid }) => {
                 name,
                 price,
                 quantity: 1,
-                uid
+                uid,
+                tPrice: price * 1
             }
         })
     }

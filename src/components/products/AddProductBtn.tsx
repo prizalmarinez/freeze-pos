@@ -4,7 +4,9 @@ import {
     Flex,
     Box,
     Text,
+    Icon
 } from "@chakra-ui/react"
+import { FaPlus } from "react-icons/fa"
 
 export const AddProductBtn: React.FC = () => {
     const router = useHistory()
@@ -19,12 +21,11 @@ export const AddProductBtn: React.FC = () => {
             boxShadow="base"
             rounded="md"
             bg="white"
+            color="nTomato.500"
             _hover={{ bg: "dark.500", color: 'nTomato.500' }}
         >
             <Box pt="2">
-                <Text fontSize="20px" as="b">
-                    +
-                </Text>
+                <Icon as={FaPlus}  fontSize="20px" />
             </Box>
         </Flex >
     );

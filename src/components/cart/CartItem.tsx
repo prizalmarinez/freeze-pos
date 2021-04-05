@@ -11,10 +11,11 @@ import {
 interface Props {
     quantity: number,
     name: string,
-    price: number
+    price: number,
+    tPrice: number
 }
 
-export const CartItem: React.FC<Props> = ({ quantity, name, price }) => {
+export const CartItem: React.FC<Props> = ({ quantity, name, price, tPrice }) => {
     return (
         <Box>
             <Flex>
@@ -35,7 +36,7 @@ export const CartItem: React.FC<Props> = ({ quantity, name, price }) => {
                 <Spacer />
                 <Box pt="1">
                     <Text as="b" fontSize="20px">
-                        ${price * quantity}
+                        ${tPrice}
                     </Text>
                 </Box>
             </Flex>
